@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ungcartoon/utility/my_style.dart';
+import 'package:ungcartoon/widget/add_location.dart';
 import 'package:ungcartoon/widget/information_login.dart';
 
 class MyService extends StatefulWidget {
@@ -25,7 +26,7 @@ class _MyServiceState extends State<MyService> {
       FirebaseAuth.instance.authStateChanges().listen((event) {
         setState(() {
           name = event!.displayName;
-          email = event!.email;
+          email = event.email;
         });
       });
     });
@@ -69,7 +70,7 @@ class _MyServiceState extends State<MyService> {
       subtitle: Text('Show All Cartoon in my Stock'),
       onTap: () {
         setState(() {
-          currentWidget = Information();
+          currentWidget = AddLocation();
         });
         Navigator.pop(context);
       },

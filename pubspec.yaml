@@ -18,24 +18,27 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  baseflow_plugin_template:
+    git:
+      url: git://github.com/Baseflow/baseflow_plugin_template.git
+      ref: v2.0.0-nullsafety
   flutter:
     sdk: flutter
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_core: ^1.0.2
   firebase_auth: ^1.0.1
   cloud_firestore: ^1.0.3
-  location: ^4.1.1
   geolocator: ^7.0.1
+  background_fetch: ^1.0.0-nullsafety.2
+  shared_preferences: ^2.0.0-nullsafety
 
 dev_dependencies:
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
 # For information on the generic Dart part of this file, see the

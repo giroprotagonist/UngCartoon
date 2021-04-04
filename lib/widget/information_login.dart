@@ -9,7 +9,7 @@ class Information extends StatefulWidget {
 }
 
 class _InformationState extends State<Information> {
-  String? displayName;
+  late String displayName;
 
   @override
   void initState() {
@@ -21,7 +21,7 @@ class _InformationState extends State<Information> {
     await Firebase.initializeApp().then((value) async {
       FirebaseAuth.instance.authStateChanges().listen((event) {
         setState(() {
-          displayName = event!.displayName;
+          displayName = event!.displayName!;
         });
         print('#### displayName = $displayName');
       });
@@ -51,7 +51,7 @@ class _InformationState extends State<Information> {
               color: MyStyle().darkColor,
             ),
             title:
-                MyStyle().titleH2(displayName == null ? 'Non ?' : displayName!),
+                MyStyle().titleH2(displayName),
             subtitle: Text('Display Name User'),
           ),
         ),

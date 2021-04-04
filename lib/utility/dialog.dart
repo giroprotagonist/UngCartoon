@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ungcartoon/utility/my_style.dart';
 
-Future<Null> normalDialog(BuildContext context, String? string) async {
+Future<Null> normalDialog(BuildContext context, String string) async {
   showDialog(
     context: context,
     builder: (context) => SimpleDialog(
@@ -11,7 +11,7 @@ Future<Null> normalDialog(BuildContext context, String? string) async {
           'Normal Dialog',
           style: MyStyle().redBoldStyle(),
         ),
-        subtitle: Text(string!),
+        subtitle: Text(string),
       ),
       children: [
         TextButton(

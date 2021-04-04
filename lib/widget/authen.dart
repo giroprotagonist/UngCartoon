@@ -12,7 +12,7 @@ class Authen extends StatefulWidget {
 class _AuthenState extends State<Authen> {
   late double screen;
   bool statusRedEye = true;
-  String? user, password;
+  late String user, password;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class _AuthenState extends State<Authen> {
       width: screen * 0.75,
       child: ElevatedButton(
         onPressed: () {
-          if ((user?.isEmpty ?? true) || (password?.isEmpty ?? true)) {
+          if ((user.isEmpty) || (password.isEmpty)) {
             normalDialog(context, 'Have Space ? Please Fill Every Blank');
           } else {
             checkAuthen();
@@ -161,7 +161,7 @@ class _AuthenState extends State<Authen> {
   Future<Null> checkAuthen() async {
     await Firebase.initializeApp().then((value) async {
       await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: user!, password: password!)
+          .signInWithEmailAndPassword(email: user, password: password)
           .then((value) => Navigator.pushNamedAndRemoveUntil(
               context, '/myService', (route) => false))
           .catchError((value) => normalDialog(context, value.message));

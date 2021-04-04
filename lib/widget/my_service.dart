@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ungcartoon/utility/my_style.dart';
-import 'package:ungcartoon/widget/add_location.dart';
+import 'package:ungcartoon/widget/backgroundbetch.dart';
+import 'package:ungcartoon/widget/geoloco.dart';
 import 'package:ungcartoon/widget/information_login.dart';
 
 class MyService extends StatefulWidget {
@@ -11,8 +12,8 @@ class MyService extends StatefulWidget {
 }
 
 class _MyServiceState extends State<MyService> {
-  String? name, email;
-  Widget currentWidget = Information();
+  late String name, email;
+  Widget currentWidget = BackgroundBetcher();
 
   @override
   void initState() {
@@ -25,8 +26,8 @@ class _MyServiceState extends State<MyService> {
     await Firebase.initializeApp().then((value) async {
       FirebaseAuth.instance.authStateChanges().listen((event) {
         setState(() {
-          name = event!.displayName;
-          email = event.email;
+          name = event!.displayName!;
+          email = event.email!;
         });
       });
     });
@@ -70,7 +71,7 @@ class _MyServiceState extends State<MyService> {
       subtitle: Text('Show All Cartoon in my Stock'),
       onTap: () {
         setState(() {
-          currentWidget = AddLocation();
+          currentWidget = GeolocatorWidget();
         });
         Navigator.pop(context);
       },
@@ -87,7 +88,7 @@ class _MyServiceState extends State<MyService> {
       subtitle: Text('Information of User Login'),
       onTap: () {
         setState(() {
-          currentWidget = Information();
+          currentWidget = BackgroundBetcher();
         });
         Navigator.pop(context);
       },
@@ -100,8 +101,8 @@ class _MyServiceState extends State<MyService> {
         image: DecorationImage(
             image: AssetImage('images/wall.jpg'), fit: BoxFit.cover),
       ),
-      accountName: MyStyle().titleH2White(name == null ? 'Name' : name!),
-      accountEmail: MyStyle().titleH3(email == null ? 'email' : email!),
+      accountName: MyStyle().titleH2White(name),
+      accountEmail: MyStyle().titleH3(email),
       currentAccountPicture: Image.asset('images/logo.png'),
     );
   }

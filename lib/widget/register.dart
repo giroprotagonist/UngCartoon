@@ -11,7 +11,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   late double screen;
-  String? name, user, password;
+  late String name, user, password;
 
   Container buildName() {
     return Container(
@@ -133,9 +133,9 @@ class _RegisterState extends State<Register> {
       backgroundColor: MyStyle().darkColor,
       onPressed: () {
         print('name = $name, user = $user, password = $password');
-        if ((name?.isEmpty ?? true) ||
-            (user?.isEmpty ?? true) ||
-            (password?.isEmpty ?? true)) {
+        if ((name.isEmpty) ||
+            (user.isEmpty) ||
+            (password.isEmpty)) {
           print('Have Space');
           normalDialog(context, 'Have Space ? Please Fill Every Blank');
         } else {
@@ -151,7 +151,7 @@ class _RegisterState extends State<Register> {
     await Firebase.initializeApp().then((value) async {
       print('####### Firebase Initialize Success #######');
       await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: user!, password: password!)
+          .createUserWithEmailAndPassword(email: user, password: password)
           .then((value) async {
         print('Register Success');
         await value.user!.updateProfile(displayName: name).then((value) =>

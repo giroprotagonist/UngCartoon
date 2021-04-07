@@ -3,62 +3,18 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart' as geoloco;
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
-import 'package:location/location.dart';
-import 'package:location_platform_interface/location_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-class AddLocation extends StatefulWidget {
-  final double? lat;
-  final double? lng;
-  final double? speed;
-  AddLocation({Key? key, this.lat, this.lng, this.speed}) : super(key: key);
+class PageWidget extends StatefulWidget {
+  PageWidget();
+
   @override
   _AddLocationState createState() => _AddLocationState();
 }
 
-class _AddLocationState extends State<AddLocation> {
-  // Field
-  double? lat, lng;
-  double? speed;
-  String? dateString;
-
-  // Method
-  @override
-  void initState() {
-    super.initState();
-    // findLatLng();
-
-    setState(() {
-      lat = widget.lat;
-      lng = widget.lng;
-      speed = widget.speed;
-      print('latlng on AddLocaatinn ===>> $lat, $lng, $speed');
-    });
-  }
-
-  Future<void> findLatLng() async {
-    LocationData locationData = findLocationData() as LocationData;
-    setState(() {
-      lat = locationData.latitude;
-      lng = locationData.longitude;
-      speed = locationData.speed;
-      print('lat, lng on add Locaton ===>>>$lat, $lng, $speed');
-    });
-  }
-
-  Future<Stream<LocationData>?> findLocationData() async {
-    var location = Location();
-    try {
-      return location.onLocationChanged;
-    } catch (e) {
-      print('e AddLocation ==>> ${e.toString()}');
-      return null;
-    }
-  }
-
+class _AddLocationState extends State<PageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,11 +33,12 @@ class _AddLocationState extends State<AddLocation> {
       ),
     );
   }
+}
 
   Future<Null> insertDataToFirestore() async {
     await Firebase.initializeApp();
     FirebaseAuth auth = FirebaseAuth.instance;
-    Position _fetchedUserLocation = await geoloco.Geolocator.getCurrentPosition();
+    Position _fetchedUserLocation = await Geolocator.getCurrentPosition();
     log(_fetchedUserLocation.latitude.toString() +
         _fetchedUserLocation.longitude.toString());
 
@@ -132,4 +89,3 @@ class _AddLocationState extends State<AddLocation> {
       print('Upload Success Dawgydeuce');
     });
   }
-}

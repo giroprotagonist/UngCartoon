@@ -70,7 +70,7 @@ class _MyServiceState extends State<MyService> {
       subtitle: Text('Show All Cartoon in my Stock'),
       onTap: () {
         setState(() {
-          currentWidget = AddLocation();
+          currentWidget = PageWidget();
         });
         Navigator.pop(context);
       },

@@ -3,8 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ungcartoon/utility/my_style.dart';
 import 'package:ungcartoon/widget/backgroundbetch.dart';
-import 'package:ungcartoon/widget/geoloco.dart';
-import 'package:ungcartoon/widget/information_login.dart';
+import 'package:ungcartoon/widget/add_location.dart';
 
 class MyService extends StatefulWidget {
   @override
@@ -71,7 +70,7 @@ class _MyServiceState extends State<MyService> {
       subtitle: Text('Show All Cartoon in my Stock'),
       onTap: () {
         setState(() {
-          currentWidget = GeolocatorWidget();
+          currentWidget = AddLocation();
         });
         Navigator.pop(context);
       },

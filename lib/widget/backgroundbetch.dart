@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -95,6 +96,7 @@ class _BetcherState extends State<BackgroundBetcher> {
     prefs.setString(EVENTS_KEY, jsonEncode(_events));
 
     if (taskId == "flutter_background_fetch") {
+      await Firebase.initializeApp();
       FirebaseAuth auth = FirebaseAuth.instance;
       Position _fetchedUserLocation = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       log(_fetchedUserLocation.latitude.toString() +

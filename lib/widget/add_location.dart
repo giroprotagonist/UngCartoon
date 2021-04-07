@@ -2,10 +2,13 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:geolocator/geolocator.dart' as geoloco;
 import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
+import 'package:location/location.dart';
+import 'package:location_platform_interface/location_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class AddLocation extends StatefulWidget {
   final double? lat;
@@ -23,16 +26,37 @@ class _AddLocationState extends State<AddLocation> {
   String? dateString;
 
   // Method
+  @override
   void initState() {
     super.initState();
-    Firebase.initializeApp().whenComplete(() {
-      setState(() {});
-    });
+    // findLatLng();
 
-    // create an instance of Location
-    // subscribe to changes in the user's location
-    // by "listening" to the location's onLocationChanged event
-    insertDataToFirestore();
+    setState(() {
+      lat = widget.lat;
+      lng = widget.lng;
+      speed = widget.speed;
+      print('latlng on AddLocaatinn ===>> $lat, $lng, $speed');
+    });
+  }
+
+  Future<void> findLatLng() async {
+    LocationData locationData = findLocationData() as LocationData;
+    setState(() {
+      lat = locationData.latitude;
+      lng = locationData.longitude;
+      speed = locationData.speed;
+      print('lat, lng on add Locaton ===>>>$lat, $lng, $speed');
+    });
+  }
+
+  Future<Stream<LocationData>?> findLocationData() async {
+    var location = Location();
+    try {
+      return location.onLocationChanged;
+    } catch (e) {
+      print('e AddLocation ==>> ${e.toString()}');
+      return null;
+    }
   }
 
   @override
@@ -43,7 +67,7 @@ class _AddLocationState extends State<AddLocation> {
           children: <Widget>[
             Container(
               margin: const EdgeInsets.only(right: 42),
-              child: OutlinedButton(
+              child: ElevatedButton(
                 child: const Text('Post User Location'),
                 onPressed: insertDataToFirestore,
               ),
@@ -54,16 +78,17 @@ class _AddLocationState extends State<AddLocation> {
     );
   }
 
-    Future<Stream<Null>> insertDataToFirestore() async {
+  Future<Null> insertDataToFirestore() async {
+    await Firebase.initializeApp();
     FirebaseAuth auth = FirebaseAuth.instance;
-    Position _fetchedUserLocation = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position _fetchedUserLocation = await geoloco.Geolocator.getCurrentPosition();
     log(_fetchedUserLocation.latitude.toString() +
         _fetchedUserLocation.longitude.toString());
 
     User firebaseUser = (auth.currentUser)!;
     String email = firebaseUser.email!;
     String uid = firebaseUser.uid;
-    String displayName = firebaseUser.displayName!;
+    String displayNamed = firebaseUser.displayName!;
     DateTime dateTime = DateTime.now();
     String dateString = DateFormat('dd-MM-yyyy - kk:mm').format(dateTime);
     double latitude = _fetchedUserLocation.latitude.toDouble();
@@ -76,7 +101,7 @@ class _AddLocationState extends State<AddLocation> {
     map['DateTime'] = dateString;
     map['Email'] = email;
     map['Uid'] = uid;
-    map['DisplayName'] = displayName;
+    map['DisplayName'] = displayNamed;
     map['Latitude'] = latitude;
     map['Longitude'] = longitude;
     map['Speed'] = speed;
@@ -85,7 +110,7 @@ class _AddLocationState extends State<AddLocation> {
 
     Map<String, dynamic> map2 = Map();
     map2['DateTime'] = dateString;
-    map2['Detail'] = displayName;
+    map2['Detail'] = displayNamed;
     map2['Lat'] = latitude;
     map2['Lng'] = longitude;
     map2['Name'] = speed;
@@ -94,7 +119,7 @@ class _AddLocationState extends State<AddLocation> {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference collectionReference =
     firestore.collection('locations');
-    await collectionReference.doc('$dateString' + ' $displayName').set(map).then((
+    await collectionReference.doc('$dateString' + ' $displayNamed').set(map).then((
         value) {
       print('Upload Success Dawg');
     });
@@ -102,10 +127,9 @@ class _AddLocationState extends State<AddLocation> {
     FirebaseFirestore firestore2 = FirebaseFirestore.instance;
     CollectionReference collectionReference2 =
     firestore2.collection('usertest');
-    await collectionReference2.doc(displayName).set(map2).then((
+    await collectionReference2.doc(' $displayNamed').set(map2).then((
         value) {
       print('Upload Success Dawgydeuce');
     });
-    return insertDataToFirestore();
   }
 }

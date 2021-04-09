@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ungcartoon/utility/dialog.dart';
-import 'package:ungcartoon/utility/my_style.dart';
+import 'package:rideyrbiketracker/utility/dialog.dart';
+import 'package:rideyrbiketracker/utility/my_style.dart';
 
 class Authen extends StatefulWidget {
   @override
@@ -34,7 +34,7 @@ class _AuthenState extends State<Authen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 buildLogo(),
-                MyStyle().titleH1('Ung Cattoon'),
+                MyStyle().titleH1('Ride Yr Bike Tracker'),
                 buildUser(),
                 buildPassword(),
                 buildLogin(),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyStyle {
-  Color darkColor = Color(0xff7e6339);
-  Color primaryColor = Color(0xffaf9064);
-  Color lightColor = Color(0xffe2c092);
+  Color darkColor = Color(0xff000000);
+  Color primaryColor = Color(0xff000000);
+  Color lightColor = Color(0xffffffff);
 
   BoxDecoration boxDecoration() => BoxDecoration(
         borderRadius: BorderRadius.circular(20),

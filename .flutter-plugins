@@ -2,8 +2,8 @@
 background_fetch=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/background_fetch-1.0.0-nullsafety.2/
 cloud_firestore=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-1.0.4/
 cloud_firestore_web=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.4/
-firebase_auth=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-1.0.2/
-firebase_auth_web=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-1.0.4/
+firebase_auth=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-1.0.3/
+firebase_auth_web=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-1.0.5/
 firebase_core=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.0.3/
 firebase_core_web=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.0.2/
 flutter_plugin_android_lifecycle=/home/donkey/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.1/

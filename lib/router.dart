@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ungcartoon/widget/authen.dart';
-import 'package:ungcartoon/widget/my_service.dart';
-import 'package:ungcartoon/widget/register.dart';
+import 'package:rideyrbiketracker/widget/authen.dart';
+import 'package:rideyrbiketracker/widget/my_service.dart';
+import 'package:rideyrbiketracker/widget/register.dart';
 
 final Map<String, WidgetBuilder> routes = {
   '/authen': (BuildContext context) => Authen(),

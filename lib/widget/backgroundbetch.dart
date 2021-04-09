@@ -199,8 +199,8 @@ class _BetcherState extends State<BackgroundBetcher> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-            title: const Text('BackgroundFetch Example', style: TextStyle(color: Colors.black)),
-            backgroundColor: Colors.amberAccent,
+            title: const Text('Location Fetch Log', style: TextStyle(color: Colors.black)),
+            backgroundColor: Colors.tealAccent,
             brightness: Brightness.light,
             actions: <Widget>[
               Switch(value: _enabled, onChanged: _onClickEnable),

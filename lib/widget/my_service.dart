@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ungcartoon/utility/my_style.dart';
-import 'package:ungcartoon/widget/backgroundbetch.dart';
-import 'package:ungcartoon/widget/add_location.dart';
+import 'package:rideyrbiketracker/utility/my_style.dart';
+import 'package:rideyrbiketracker/widget/backgroundbetch.dart';
+import 'package:rideyrbiketracker/widget/add_location.dart';
 
 class MyService extends StatefulWidget {
   @override
@@ -66,8 +66,8 @@ class _MyServiceState extends State<MyService> {
         Icons.face,
         size: 36,
       ),
-      title: Text('Show Cartoon List'),
-      subtitle: Text('Show All Cartoon in my Stock'),
+      title: Text('Manual Location Update'),
+      subtitle: Text('Send a single location update'),
       onTap: () {
         setState(() {
           currentWidget = PageWidget();
@@ -83,8 +83,8 @@ class _MyServiceState extends State<MyService> {
         Icons.perm_device_info,
         size: 36,
       ),
-      title: Text('Information'),
-      subtitle: Text('Information of User Login'),
+      title: Text('Background Location Fetch Log'),
+      subtitle: Text('History of recorded locations'),
       onTap: () {
         setState(() {
           currentWidget = BackgroundBetcher();

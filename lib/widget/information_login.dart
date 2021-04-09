@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ungcartoon/utility/my_style.dart';
+import 'package:rideyrbiketracker/utility/my_style.dart';
 
 class Information extends StatefulWidget {
   @override

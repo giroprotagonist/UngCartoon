@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ungcartoon/utility/my_style.dart';
+import 'package:rideyrbiketracker/utility/my_style.dart';
 
 Future<Null> normalDialog(BuildContext context, String string) async {
   showDialog(

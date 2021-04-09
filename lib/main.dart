@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:ungcartoon/router.dart';
+import 'package:rideyrbiketracker/router.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
 
